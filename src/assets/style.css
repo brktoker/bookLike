@@ -637,6 +637,13 @@ video {
   color: rgba(153, 27, 27, var(--tw-text-opacity));
 }
 
+.bookmark-item-liked {
+  --tw-bg-opacity: 1;
+  background-color: rgba(106, 90, 205, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
 .details-btn {
   display: flex;
   height: 2.5rem;

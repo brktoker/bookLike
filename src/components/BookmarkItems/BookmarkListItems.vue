@@ -5,10 +5,10 @@
         :href="item.url || ''"
         target="_blank"
         class="hover:text-black font-bold text-l mb-1 text-gray-600 text-center"
-        >{{item.title}}</a
+        >{{ item.title }}</a
       >
       <div class="flex items-center justify-center mt-2 gap-x-1">
-        <button class="like-btn group">
+        <button @click="likeItem" class="like-btn group" :class="isLiked">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="fill-current group-hover:text-white"
@@ -22,7 +22,11 @@
             />
           </svg>
         </button>
-        <button class="bookmark-btn group bookmark-item-active">
+        <button
+          @click="bookmarkItem"
+          class="bookmark-btn group"
+          :class="isBookmarked"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="fill-current group-hover:text-white"
@@ -52,32 +56,99 @@
               />
             </svg>
             <p class="details-container">
-              {{item.comment}}
+              {{ item.comment }}
             </p>
           </button>
         </div>
       </div>
       <div class="text-xs text-gray-400 mt-2 flex justify-between">
-        <a href="#" class="hover:text-black"> {{item?.user?.fullname || 'unknow'}} </a>
+        <a href="#" class="hover:text-black">
+          {{ item?.user?.fullname || "unknow" }}
+        </a>
         <span>14 Mart</span>
       </div>
     </div>
-    <div class="bg-red-200 p-1 text-red-900 text-center text-sm">{{item.category?.name || 'unknow'}}</div>
+    <div class="bg-red-200 p-1 text-red-900 text-center text-sm">
+      {{ item.category?.name || "unknow" }}
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {};
-  },
-  mounted() {
   },
   props: {
     item: {
       type: Object,
       required: true,
       default: () => {},
+    },
+  },
+  methods: {
+    likeItem() {
+      if (this._userLikes.indexOf(this.item.id) == -1) {
+        const userLikes = [...this._userLikes, this.item.id];
+
+        this.$axios
+          .patch(`/users/${this._getCurrentUser.id}`, { likes: userLikes })
+          .then((res) => {
+            this.$store.commit("setUserLikes", userLikes);
+          });
+      } else {
+        const index = this._userLikes.findIndex((i) => i === this.item.id);
+        if (index != undefined) {
+          let userLikes = [...this._userLikes];
+          const removedLikes = userLikes.splice(index, 1);
+          this.$axios
+            .patch(`/users/${this._getCurrentUser.id}`, { likes: removedLikes })
+            .then((res) => {
+              this.$store.commit("setUserLikes", userLikes);
+            });
+        }
+      }
+    },
+    bookmarkItem() {
+      if (this._userBookmarks.indexOf(this.item.id) == -1) {
+        const userBookmarks = [...this._userBookmarks, this.item.id];
+
+        this.$axios
+          .patch(`/users/${this._getCurrentUser.id}`, {
+            bookmarks: userBookmarks,
+          })
+          .then((res) => {
+            this.$store.commit("setUserBookmarks", userBookmarks);
+          });
+      } else {
+        const index = this._userBookmarks.findIndex((i) => i === this.item.id);
+        if (index != undefined) {
+          const removedLikes = this._userBookmarks.filter(
+            (b) => b !== this.item.id
+          );
+          this.$axios
+            .patch(`/users/${this._getCurrentUser.id}`, {
+              bookmarks: removedLikes,
+            })
+            .then((res) => {
+              this.$store.commit("setUserBookmarks", removedLikes);
+            });
+        }
+      }
+    },
+  },
+  computed: {
+    ...mapGetters(["_getCurrentUser", "_userLikes", "_userBookmarks"]),
+    isLiked() {
+      return {
+        "bookmark-item-liked": this._userLikes?.indexOf(this.item.id) > -1,
+      };
+    },
+    isBookmarked() {
+      return {
+        "bookmark-item-active": this._userBookmarks?.indexOf(this.item.id) > -1,
+      };
     },
   },
 };

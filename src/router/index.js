@@ -22,6 +22,30 @@ const routes = [
     path: "/new",
     component: () => import("@/views/NewBookmark"),
   },
+  {
+    name: "Favorites",
+    path: "/favorites",
+    meta: {
+      componentName: "appBookmarkList"
+    },
+    component: () => import("@/views/Account")
+  },
+  {
+    name: "Likes",
+    path: "/likes",
+    meta: {
+      componentName: "appBookmarkList"
+    },
+    component: () => import("@/views/Account")
+  },
+  {
+    name: "Settings",
+    path: "/settings",
+    meta: {
+      componentName: "userSettings"
+    },
+    component: () => import("@/views/Account")
+  }
 ];
 
 const router = createRouter({
@@ -30,6 +54,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log(to)
+  console.log(from)
   const authRequiredRoutes = ["HomePage"];
   const authNotRequiredRoutes = ["RegisterPage", "LoginPage"]
 

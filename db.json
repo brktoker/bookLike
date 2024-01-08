@@ -4,7 +4,13 @@
       "username": "username",
       "fullname": "fullname",
       "password": "3448b6539c2adec0144b40f4aa7c938af872ddac",
-      "id": 2
+      "id": 2,
+      "likes": [
+        1
+      ],
+      "bookmarks": [
+        1
+      ]
     }
   ],
   "bookmarks": [
