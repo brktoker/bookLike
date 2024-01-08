@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white flex flex-col gap-x-3 rounded-md shadow-sm" style="min-width: 200px !important;">
+  <div class="bg-white flex flex-col gap-x-3 rounded-md shadow-sm">
     <div class="p-3">
       <a
         :href="item.url || ''"

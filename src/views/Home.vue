@@ -2,8 +2,11 @@
   <div>
     <AppHeader />
     <div class="flex flex-row">
-      <AppSideBar />
-      <BookmarkList :items="bookmarkList" />
+      <AppSideBar @changedCategory="updateBookmarkList" />
+      <BookmarkList :items="bookmarkList" v-if="bookmarkList.length > 0" />
+      <h3 v-else>
+        Not found bookmark on this category..
+      </h3>
     </div>
   </div>
 </template>
@@ -14,16 +17,25 @@ export default {
   components: {
     AppSideBar,
   },
-  data(){
+  data() {
     return {
-      bookmarkList:[]
-    }
+      bookmarkList: [],
+    };
   },
-  created(){
-    this.$axios.get("/bookmarks?_expand=category&_expand=user").then(res => {
-      console.log(res.data)
-      this.bookmarkList = res?.data || []
-    })
+  created() {
+    this.$axios.get("/bookmarks?_expand=category&_expand=user").then((res) => {
+      this.bookmarkList = res?.data || [];
+    });
+  },
+  methods: {
+    updateBookmarkList(id) {
+      const url = id
+        ? `/bookmarks?_expand=category&_expand=user&categoryId=${id}`
+        : "/bookmarks?_expand=category&_expand=user";
+      this.$axios.get(url).then((res) => {
+        this.bookmarkList = res?.data || [];
+      });
+    },
   },
 };
 </script>
