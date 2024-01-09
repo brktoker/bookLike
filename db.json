@@ -11,131 +11,17 @@
       "bookmarks": [
         1
       ]
-    },
-    {
-      "username": "burak",
-      "fullname": "burak",
-      "password": "f6377a0d9674e78c2fa4cb40d7126d8b90049b94",
-      "id": 3
     }
   ],
   "bookmarks": [
     {
-      "title": "Vue döküman",
+      "title": "Vue Document",
       "url": "https://vuejs.org/",
       "categoryId": 1,
       "comment": "Beautiful framework in the world.",
       "userId": 2,
       "created_at": "2024-01-06T12:15:38.822Z",
       "id": 1
-    },
-    {
-      "title": "document",
-      "url": "...///url",
-      "categoryId": 6,
-      "comment": "document comment",
-      "userId": 2,
-      "created_at": "2024-01-06T12:25:21.910Z",
-      "id": 2
-    },
-    {
-      "title": "React book",
-      "url": "http://...",
-      "categoryId": 2,
-      "comment": "React js document",
-      "userId": 2,
-      "created_at": "2024-01-08T15:15:28.509Z",
-      "id": 3
-    },
-    {
-      "title": "angular",
-      "url": "http://...",
-      "categoryId": 3,
-      "comment": "angular",
-      "userId": 2,
-      "created_at": "2024-01-08T15:22:21.326Z",
-      "id": 4
-    },
-    {
-      "title": "bookmark",
-      "url": "url",
-      "categoryId": 5,
-      "comment": "bookmark",
-      "userId": 2,
-      "created_at": "2024-01-08T16:28:18.642Z",
-      "id": 5
-    },
-    {
-      "title": "new bookmark",
-      "url": "url",
-      "categoryId": 6,
-      "comment": "bookmark cooment",
-      "userId": 2,
-      "created_at": "2024-01-08T16:33:12.314Z",
-      "id": 6
-    },
-    {
-      "title": "new bookmark2",
-      "url": "http://..",
-      "categoryId": 4,
-      "comment": "backend technologies",
-      "userId": 3,
-      "created_at": "2024-01-09T10:16:31.188Z",
-      "id": 7
-    },
-    {
-      "title": "node js",
-      "url": "node url",
-      "categoryId": 4,
-      "comment": "node js",
-      "userId": 3,
-      "created_at": "2024-01-09T10:19:37.253Z",
-      "id": 8
-    },
-    {
-      "title": "laravel",
-      "url": "laravel url",
-      "categoryId": 4,
-      "comment": "laravel document",
-      "userId": 3,
-      "created_at": "2024-01-09T10:23:56.472Z",
-      "id": 9
-    },
-    {
-      "title": "asdas",
-      "url": "asdasd",
-      "categoryId": 5,
-      "comment": "asdasd",
-      "userId": 3,
-      "created_at": "2024-01-09T10:25:53.502Z",
-      "id": 10
-    },
-    {
-      "title": "asdas",
-      "url": "asdasd",
-      "categoryId": 1,
-      "comment": "asdasd",
-      "userId": 3,
-      "created_at": "2024-01-09T10:26:05.524Z",
-      "id": 11
-    },
-    {
-      "title": "asdasd",
-      "url": "asdasd",
-      "categoryId": 2,
-      "comment": "asdasdas",
-      "userId": 3,
-      "created_at": "2024-01-09T10:29:54.514Z",
-      "id": 12
-    },
-    {
-      "title": "asdasd222",
-      "url": "asdasd22",
-      "categoryId": 4,
-      "comment": "asdasdasd222",
-      "userId": 3,
-      "created_at": "2024-01-09T10:34:38.731Z",
-      "id": 13
     },
     {
       "title": "GO Lang",

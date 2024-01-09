@@ -1,26 +1,26 @@
 <template>
   <div class="login_register_container">
-    <h3 class="text-2xl text-center mb-3">Login</h3>
+    <h3 class="text-2xl text-center mb-3">Sign In</h3>
     <input
       v-model="userData.username"
       type="text"
-      placeholder="Kullanıcı Adı"
+      placeholder="User Name"
       class="input mb-3"
     />
     <input
       v-model="userData.password"
       type="password"
-      placeholder="Şifre"
+      placeholder="Password"
       class="input mb-3"
     />
-    <button @click="login" class="default-button">Giriş yap</button>
+    <button @click="login" class="default-button">Sign In</button>
     <span class="text-center mt-3 text-sm">
-      Üye değilim,
+      I have not a account. 
       <router-link
         :to="{ name: 'RegisterPage' }"
         class="text-red-900 hover:text-black"
       >
-        Üye olmak istiyorum!</router-link
+      Please Sign Up!</router-link
       >
     </span>
   </div>

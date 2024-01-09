@@ -4,28 +4,28 @@
     <input
       v-model="userData.fullname"
       type="text"
-      placeholder="Tam Ad"
+      placeholder="Full Name"
       class="input mb-3"
     />
     <input
       v-model="userData.username"
       type="text"
-      placeholder="Kullanıcı Adı"
+      placeholder="User Name"
       class="input mb-3"
     />
     <input
       v-model="userData.password"
       type="password"
-      placeholder="Şifre"
+      placeholder="Password"
       class="input mb-3"
     />
-    <button class="default-button" @click="register">Kayıt ol</button>
+    <button class="default-button" @click="register">Sign Up</button>
     <span class="text-center mt-3 text-sm">
-      Zaten Üyeyim,
+      I have already account,
       <router-link
         :to="{ name: 'LoginPage' }"
         class="text-red-900 hover:text-black"
-        >Giriş yap!</router-link
+        >Sign In!</router-link
       >
     </span>
   </div>
@@ -63,12 +63,8 @@ export default {
         this.$axios
           .post("/users", { ...this.userData, password })
           .then((res) => {
-            if (res?.data?.length > 0) {
-              this.$store.commit("setUser", res?.data[0]);
-              this.$router.replace("/");
-            } else {
-              alert("user created error");
-            }
+            this.$store.commit("setUser", res?.data[0]);
+            this.$router.replace("/");
           });
       } else {
         alert("Please Fill all nessesary inputs");
