@@ -20,5 +20,15 @@ yarn build
 yarn lint
 ```
 
+### Use Fake DB
+```
+json-server --watch db.json
+```
+
+### Compiles Server side
+```
+yarn start || npm run start
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
