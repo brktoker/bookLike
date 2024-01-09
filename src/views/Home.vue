@@ -23,11 +23,21 @@ export default {
     };
   },
   created() {
-    this.$axios.get("/bookmarks?_expand=category&_expand=user").then((res) => {
-      this.bookmarkList = res?.data || [];
-    });
+    this.fetchedData();
+  },
+  mounted(){
+    this.$socket.on("NEW_BOOKMARK_ADDED", (bookmark) => {
+      // console.log(bookmark)
+      this.bookmarkList.push(bookmark)
+      
+    })
   },
   methods: {
+    fetchedData(){
+      this.$axios.get("/bookmarks?_expand=category&_expand=user").then((res) => {
+      this.bookmarkList = res?.data || [];
+    });
+    },
     updateBookmarkList(id) {
       const url = id
         ? `/bookmarks?_expand=category&_expand=user&categoryId=${id}`

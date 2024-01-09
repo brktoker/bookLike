@@ -23,9 +23,9 @@ export default {
   },
   created() {
     this.$axios.get("/bookmarks?_expand=category&_expand=user").then(bookmark_list_response => {
-      console.log("bookmark_list_response :>> ", bookmark_list_response);
+     
       this.bookmarkList = bookmark_list_response?.data || [];
     });
-  }
+  },
 };
 </script>

@@ -14,7 +14,7 @@
       placeholder="URL"
       class="input mb-3"
     />
-    <select v-model="bookmarkData.category" class="input mb-3">
+    <select v-model="bookmarkData.categoryId" class="input mb-3">
       <option disabled :value="null" selected>Please Select Category</option>
       <option
         v-for="category in categories"
@@ -52,7 +52,7 @@ export default {
       bookmarkData: {
         title: null,
         url: null,
-        category: null,
+        categoryId: null,
         comment: null,
       },
     };
@@ -73,7 +73,7 @@ export default {
       return (
         this.bookmarkData.title &&
         this.bookmarkData.url &&
-        this.bookmarkData.category &&
+        this.bookmarkData.categoryId &&
         this.bookmarkData.comment
       );
     },
@@ -83,20 +83,28 @@ export default {
       if (this.isDataValidation) {
         const saveData = {
           ...this.bookmarkData,
-          user_id: this._getCurrentUser?.id,
+          userId: this._getCurrentUser?.id,
           created_at: new Date(),
         };
         this.$axios.post("bookmarks", saveData).then((res) => {
+          
+
+          const socketData = {
+            ...res.data,
+            user: this._getCurrentUser,
+            category: this.categories?.find((c) => c.id === saveData.categoryId),
+          };
+          // console.log(socketData)
+          this.$socket.emit("NEW_BOOKMARK_EVENT", socketData);
+
           this.bookmarkData = {
             title: null,
             url: null,
-            category: null,
+            categoryId: null,
             comment: null,
           };
 
-          this.$nextTick(() => {
-            this.$refs.title.focus();
-          });
+          this.$router.push({ name: "HomePage" });
         });
       } else {
         alert("Please fill nessesary inputs...");
