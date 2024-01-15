@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls"; // persisted state packages this package use for encrypt localstorage vuex data
-var ls = new SecureLS({ isCompression: false });
+var ls = new SecureLS({ isCompression: false }); 
 
 export default createStore({
   state: {
